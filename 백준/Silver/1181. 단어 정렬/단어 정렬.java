@@ -5,6 +5,7 @@ import java.util.*;
 public class Main {
     static int N;
     static Set<String> set = new HashSet<>();
+
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
