@@ -3,5 +3,5 @@ SELECT COUNT(e.ID) AS COUNT
 FROM ECOLI_DATA e
 WHERE (
     e.GENOTYPE & 2 = 0
-    AND (e.GENOTYPE & 1 = 1 OR e.GENOTYPE & 4 = 4)
+    AND (e.GENOTYPE & 5 > 0)
 )
