@@ -6,6 +6,7 @@ import java.util.StringTokenizer;
 public class Main {
     static int R, C;
     static char[][] map;
+    static boolean[] checked = new boolean[26];
     static int ans;
 
     static int[] dr = {-1, 0, 1, 0};
@@ -28,14 +29,14 @@ public class Main {
 
         ans = 1;
         /// DFS
-
-        dfs(0, 0, 1, 1 << (map[0][0] - 'A'));
+        checked[map[0][0] - 'A'] = true;
+        dfs(0, 0, 1);
         System.out.println(ans);
 
     }// main
 
     // dfs
-    static void dfs(int cr, int cc, int cnt, int mask) {
+    static void dfs(int cr, int cc, int cnt) {
 
         // 최댓값 갱신
         ans = Math.max(ans, cnt);
@@ -48,11 +49,13 @@ public class Main {
             if (nr < 0 || nr >= R || nc < 0 || nc >= C) continue;
 
             // 2. 방문 체크
-            int nAlpha = map[nr][nc] - 'A';
-            if ((mask & (1 << nAlpha)) != 0) continue;
+            char c = map[nr][nc];
+            if (checked[c - 'A']) continue;
 
             // 3. 위 조건 다 통과하면
-            dfs(nr, nc, cnt + 1, mask | 1 << nAlpha);
+            checked[c - 'A'] = true;
+            dfs(nr, nc, cnt + 1);
+            checked[c - 'A'] = false;
         }
 
     }//dfs
